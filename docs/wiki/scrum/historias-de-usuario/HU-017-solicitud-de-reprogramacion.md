@@ -2,7 +2,7 @@
 id: HU-017
 tipo: historia-de-usuario
 titulo: Solicitud de reprogramación
-estado: Pendiente de aprobación
+estado: Aprobada
 epica: "[[EP-005-reprogramacion-y-operacion-administrativa]]"
 esfuerzo: Alto
 sprint_sugerido: S5 — Reprogramación y gestión
@@ -18,7 +18,7 @@ fuentes: ["PRD RF-15", "PRD RN-10"]
 ## Fuera de alcance
 - Cambiar profesional; eso es una nueva cita.
 ## Reglas de negocio
-- Original conserva su franja hasta la decisión ADMIN; solo APPROVED y futura.
+- Original conserva su franja hasta la decisión ADMIN; solo APPROVED y futura; la nueva franja se retiene (`HELD`) con expiración de 30 minutos si ADMIN no decide.
 ## Dependencias y relaciones
 - Épica: [[EP-005-reprogramacion-y-operacion-administrativa]]; depende de [[HU-014-mis-citas]], [[HU-011-consulta-de-disponibilidad]]; relacionada: [[HU-018-decision-de-reprogramacion]].
 ## Esfuerzo
@@ -47,5 +47,8 @@ Dado cita no aprobada/no futura, cambio de profesional o nueva franja no disponi
 | DoD | Pendiente | — | — |
 ## Historial de validación
 - 2026-09-17 — Creada en estado `Pendiente de aprobación`.
+- 2026-09-28 — Vencimiento de retención provisional aprobado por el usuario (ver Notas y decisiones).
+- 2026-09-28 — HU aprobada por el usuario (`Aprobada`); queda abierta la sub-decisión sobre el estado de la reprogramación al expirar la retención (ver Notas y decisiones).
 ## Notas y decisiones
-- Vencimiento de retención provisional pendiente.
+- Aprobado (2026-09-28): la retención provisional de la nueva franja vence a los 30 minutos si ADMIN no decide.
+- Sigue pendiente: qué ocurre con el estado `PENDING` de la reprogramación cuando esa retención expira sin decisión (ver [[HU-018-decision-de-reprogramacion]]); no debe implementarse sin esa decisión.

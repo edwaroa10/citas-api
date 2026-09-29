@@ -29,4 +29,4 @@ El usuario gestiona sus citas sin dobles reservas.
 ## Criterio de completitud de la épica
 - [ ] Sus HU completadas y auditoría enlazada a [[HU-016-auditoria-de-estados]].
 ## Riesgos e incógnitas
-- Las transiciones terminales completas requieren decisión documental.
+- Estrategia de concurrencia aprobada (2026-09-28: restricción única en BD + retención de 30 min); la matriz completa de transiciones terminales entre todos los estados aún requiere decisión documental, incluida la consecuencia sobre el estado de la solicitud cuando expira una retención sin decisión ADMIN.

@@ -1,0 +1,10 @@
+package com.fcv.citas.api.adapter.out.persistence.repository;
+
+import com.fcv.citas.api.adapter.out.persistence.entity.RefreshTokenJpaEntity;
+import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface RefreshTokenJpaRepository extends JpaRepository<RefreshTokenJpaEntity, Long> {
+
+    Optional<RefreshTokenJpaEntity> findByTokenHash(String tokenHash);
+}

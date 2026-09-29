@@ -2,7 +2,7 @@
 id: HU-013
 tipo: historia-de-usuario
 titulo: Solicitud de cita especializada
-estado: Pendiente de aprobación
+estado: Aprobada
 epica: "[[EP-004-ciclo-de-citas]]"
 esfuerzo: Alto
 sprint_sugerido: S4 — Cita especializada
@@ -18,7 +18,7 @@ fuentes: ["PRD RF-12", "PRD RN-01", "PRD RN-03", "PRD RN-04"]
 ## Fuera de alcance
 - Bandeja y decisión UI de ADMIN ([[HU-019-bandeja-administrativa]]).
 ## Reglas de negocio
-- Inicia REQUESTED, retiene slots; aprobar→APPROVED; rechazar exige motivo y libera slots.
+- Inicia REQUESTED, retiene slots (`HELD`) con expiración de 30 minutos; aprobar→APPROVED; rechazar exige motivo y libera slots.
 ## Dependencias y relaciones
 - Épica: [[EP-004-ciclo-de-citas]]; depende de [[HU-011-consulta-de-disponibilidad]], [[HU-012-cita-general]]; relacionadas: [[HU-019-bandeja-administrativa]], [[HU-016-auditoria-de-estados]].
 ## Esfuerzo
@@ -47,5 +47,8 @@ Dado una solicitud inválida o franja ya retenida/reservada, cuando USER la env�
 | DoD | Pendiente | — | — |
 ## Historial de validación
 - 2026-09-17 — Creada en estado `Pendiente de aprobación`.
+- 2026-09-28 — Vencimiento de retención aprobado por el usuario (ver Notas y decisiones).
+- 2026-09-28 — HU aprobada por el usuario (`Aprobada`); queda abierta la sub-decisión sobre el estado de la solicitud al expirar la retención (ver Notas y decisiones).
 ## Notas y decisiones
-- El vencimiento de una retención está pendiente.
+- Aprobado (2026-09-28): la retención de slots vence a los 30 minutos desde que la solicitud queda `REQUESTED` si ADMIN no decide.
+- Sigue pendiente: si al expirar la retención la solicitud `REQUESTED` pasa automáticamente a un estado rechazado por el sistema o queda en un estado intermedio a resolver manualmente por ADMIN; no debe implementarse sin esa decisión.

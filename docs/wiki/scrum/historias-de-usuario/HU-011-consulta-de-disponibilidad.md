@@ -2,7 +2,7 @@
 id: HU-011
 tipo: historia-de-usuario
 titulo: Consulta de disponibilidad
-estado: Pendiente de aprobación
+estado: Aprobada
 epica: "[[EP-003-disponibilidad-profesional]]"
 esfuerzo: Alto
 sprint_sugerido: S3 — Disponibilidad y cita general
@@ -18,7 +18,7 @@ fuentes: ["PRD RF-10", "PRD RN-01", "PRD RN-08"]
 ## Fuera de alcance
 - Confirmar una reserva.
 ## Reglas de negocio
-- Especialidad activa/asociada al profesional; no mostrar slots reservados o retenidos ni duración incompleta.
+- Especialidad activa/asociada al profesional; no mostrar slots reservados o retenidos (`HELD`, con expiración de 30 minutos) ni duración incompleta.
 ## Dependencias y relaciones
 - Épica: [[EP-003-disponibilidad-profesional]]; depende de [[HU-009-bloques-de-disponibilidad]], [[HU-010-duracion-por-especialidad]]; relacionadas: [[HU-012-cita-general]], [[HU-013-cita-especializada]].
 ## Esfuerzo
@@ -47,5 +47,7 @@ Dado un slot ocupado/retenido, una especialidad inactiva o un profesional no aso
 | DoD | Pendiente | — | — |
 ## Historial de validación
 - 2026-09-17 — Creada en estado `Pendiente de aprobación`.
+- 2026-09-28 — Estrategia de concurrencia aprobada por el usuario (ver Notas y decisiones).
+- 2026-09-28 — HU aprobada por el usuario (`Aprobada`).
 ## Notas y decisiones
-- Concurrencia en el momento de confirmar queda pendiente de decisión.
+- Aprobado (2026-09-28): la disponibilidad excluye slots con restricción única confirmada y slots en retención `HELD` vigente (expiración 30 minutos). Un slot cuya retención ya expiró vuelve a mostrarse como disponible.

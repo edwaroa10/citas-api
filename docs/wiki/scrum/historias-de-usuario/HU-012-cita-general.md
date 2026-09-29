@@ -2,7 +2,7 @@
 id: HU-012
 tipo: historia-de-usuario
 titulo: Cita general
-estado: Pendiente de aprobación
+estado: Aprobada
 epica: "[[EP-004-ciclo-de-citas]]"
 esfuerzo: Alto
 sprint_sugerido: S3 — Disponibilidad y cita general
@@ -47,5 +47,7 @@ Dado una cita general creada, cuando se revisa su ciclo inicial, entonces no req
 | DoD | Pendiente | — | — |
 ## Historial de validación
 - 2026-09-17 — Creada en estado `Pendiente de aprobación`.
+- 2026-09-28 — Estrategia de concurrencia aprobada por el usuario; deja de estar bloqueada por esta decisión.
+- 2026-09-28 — HU aprobada por el usuario (`Aprobada`).
 ## Notas y decisiones
-- Bloqueada para desarrollo si no se aprueba la estrategia de concurrencia.
+- Aprobado (2026-09-28): al confirmar, la reserva se protege con restricción única en BD sobre el slot; si otro proceso ya lo confirmó, la operación se rechaza de forma verificable (CA-02) sin doble reserva.

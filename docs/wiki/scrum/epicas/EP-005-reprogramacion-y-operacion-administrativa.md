@@ -28,4 +28,4 @@ Cambios de agenda trazables sin pérdida de la reserva original.
 ## Criterio de completitud de la épica
 - [ ] Ninguna decisión pierde la cita original de forma no autorizada.
 ## Riesgos e incógnitas
-- Vencimiento y concurrencia de las retenciones provisionales por decidir.
+- Resuelto (2026-09-28): retención provisional usa restricción única en BD y expira a los 30 minutos. Pendiente: qué ocurre con el estado `PENDING` de la solicitud de reprogramación cuando esa retención expira sin decisión ADMIN.

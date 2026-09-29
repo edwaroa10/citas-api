@@ -28,4 +28,4 @@ El usuario ve únicamente alternativas realmente reservables.
 ## Criterio de completitud de la épica
 - [ ] Las franjas ofrecidas satisfacen todos los CA de sus HU.
 ## Riesgos e incógnitas
-- Falta estrategia técnica aprobada para concurrencia y retenciones.
+- Resuelto (2026-09-28): concurrencia/retención usa restricción única en BD + retención con expiración de 30 min (ver [[HU-011-consulta-de-disponibilidad]]).

@@ -2,7 +2,7 @@
 id: HU-001
 tipo: historia-de-usuario
 titulo: Diseño de datos normalizado
-estado: Pendiente de aprobación
+estado: Aprobada
 epica: "[[EP-001-fundacion-y-acceso]]"
 esfuerzo: Alto
 sprint_sugerido: S1 — Fundación segura
@@ -38,7 +38,7 @@ Dado citas de 30/60 minutos y una reprogramación pendiente, cuando se revise el
 ## Definition of Done
 - [ ] CA-01 a CA-03 tienen evidencia de revisión.
 - [ ] Existe diagrama ER y justificación de claves, cardinalidades, catálogos e índices candidatos.
-- [ ] El diseño declara la estrategia aún pendiente para concurrencia/retención si no fue aprobada.
+- [ ] El diseño refleja la estrategia de concurrencia/retención aprobada (restricción única en BD por slot confirmado + estado de retención `HELD` con expiración de 30 minutos).
 - [ ] Trazabilidad actualizada en `docs/wiki/scrum/`.
 ## Evidencia de validación
 | Elemento | Resultado | Evidencia | Observación |
@@ -49,5 +49,8 @@ Dado citas de 30/60 minutos y una reprogramación pendiente, cuando se revise el
 | DoD | Pendiente | — | — |
 ## Historial de validación
 - 2026-09-17 — Creada en estado `Pendiente de aprobación`.
+- 2026-09-28 — Estrategia de concurrencia/retención aprobada por el usuario (ver Notas y decisiones).
+- 2026-09-28 — HU aprobada por el usuario (`Aprobada`).
 ## Notas y decisiones
-- No se fija una tabla ni un algoritmo de concurrencia antes de aprobación.
+- Aprobado (2026-09-28): restricción única en BD por slot confirmado (profesional + franja) más un estado de retención (`HELD`) con expiración automática de 30 minutos para solicitudes sin decisión ADMIN. El modelo debe soportar esta regla sin fijar nombres de tablas/columnas más allá de lo necesario para justificar la 3FN.
+- Sigue pendiente: qué transición de estado sufre la solicitud (no solo el slot) cuando la retención expira sin decisión ADMIN.

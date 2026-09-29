@@ -2,7 +2,7 @@
 id: HU-022
 tipo: historia-de-usuario
 titulo: Contrato REST directo
-estado: Pendiente de aprobación
+estado: Aprobada
 epica: "[[EP-006-operacion-profesional-y-trazabilidad]]"
 esfuerzo: Alto
 sprint_sugerido: S6 — Operación y contrato
@@ -18,7 +18,7 @@ fuentes: ["PRD RF-20", "RESTRICCIONES_TECNICAS §Frontend, §Backend, §Document
 ## Fuera de alcance
 - Inventar rutas, DTO, códigos o versionado antes de su decisión.
 ## Reglas de negocio
-- Frontend consume `citas-api` directamente; REST JSON; URL backend configurable por environment; CORS explícito.
+- Frontend: React + Vite + TypeScript (decidido). Consume `citas-api` directamente; REST JSON; URL backend configurable por environment; CORS explícito.
 ## Dependencias y relaciones
 - Épica: [[EP-006-operacion-profesional-y-trazabilidad]]; depende de [[HU-004-sesion-jwt]], [[HU-021-cierre-de-atencion]]; relacionadas: [[HU-003-registro-de-usuario]], [[HU-011-consulta-de-disponibilidad]].
 ## Esfuerzo
@@ -48,5 +48,8 @@ Dado un cambio de contrato, cuando se propone, entonces hay una decisión docume
 | DoD | Pendiente | — | — |
 ## Historial de validación
 - 2026-09-17 — Creada en estado `Pendiente de aprobación`.
+- 2026-09-28 — Framework de frontend decidido por el usuario: React + Vite + TypeScript.
+- 2026-09-28 — HU aprobada por el usuario (`Aprobada`); quedan pendientes rutas/DTO/versionado del contrato REST (ver Notas y decisiones).
 ## Notas y decisiones
 - HU cross-repo: antes de implementar debe enumerar repositorios, contrato, archivos, pruebas y evidencia.
+- Sigue pendiente: rutas, verbos, DTO, códigos HTTP, versionado y compatibilidad concretos del contrato REST.

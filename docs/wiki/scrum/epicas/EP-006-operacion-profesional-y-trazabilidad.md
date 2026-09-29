@@ -29,4 +29,4 @@ Información restringida por ownership y cambios de estado verificables entre fr
 ## Criterio de completitud de la épica
 - [ ] Operación y contrato cuentan con evidencia por HU.
 ## Riesgos e incógnitas
-- No se han decidido rutas/DTO/versionado REST ni la regla exacta de aplicabilidad del cierre.
+- Resuelto (2026-09-28): la aplicabilidad del cierre es automática al fin del slot de la cita. Frontend decidido: React + Vite + TypeScript. Pendiente: rutas/DTO/verbos/códigos HTTP/versionado concretos del contrato REST.
