@@ -1,0 +1,106 @@
+{
+  "name": "WF-001 appointment reminders",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours"
+            }
+          ]
+        }
+      },
+      "id": "1e7c1dc3-eff3-455b-be1c-dab9e1b84b74",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{$env.CITAS_API_URL}}/api/v1/automation/appointments/upcoming",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Automation-Key",
+              "value": "={{$env.CITAS_AUTOMATION_KEY}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d95377a5-89fb-4204-a4d4-bb4e058861b2",
+      "name": "Query approved appointments",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        224,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{$env.LAB_FROM_EMAIL}}",
+        "toEmail": "={{$json.patientEmail}}",
+        "subject": "Recordatorio de cita",
+        "emailFormat": "text",
+        "text": "=Tu cita aprobada está programada para {{$json.scheduledStartAt}}.",
+        "options": {}
+      },
+      "id": "82516d22-7e97-409b-af76-26b24b5e6540",
+      "name": "Send laboratory reminder",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        448,
+        0
+      ],
+      "webhookId": "d1b7277b-6036-40d8-a78f-5d60376d7358"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Query approved appointments",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Query approved appointments": {
+      "main": [
+        [
+          {
+            "node": "Send laboratory reminder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": true
+  },
+  "versionId": "02d70341-868f-4001-8f47-37005860e5e7",
+  "meta": {
+    "aiBuilderAssisted": true,
+    "builderVariant": "mcp",
+    "instanceId": "93ff90a0a0d2ecc0c8d5238de259c8e8b17f35a16b40518201218c7d1f0c4c90"
+  },
+  "nodeGroups": [],
+  "id": "6Ks5HWdXadUSBW7o",
+  "tags": []
+}

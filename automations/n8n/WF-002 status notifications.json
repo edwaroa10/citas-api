@@ -1,0 +1,146 @@
+{
+  "name": "WF-002 status notifications",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "citas/status-change",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "0906d26c-03a4-4907-905f-9695ba87c7e2",
+      "name": "Status change webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        80
+      ],
+      "webhookId": "ad790307-b63e-4520-af08-4c14b4e97993"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "leftValue": "={{$json.status}}",
+              "operator": {
+                "type": "string",
+                "operation": "regex"
+              },
+              "rightValue": "^(APPROVED|REJECTED|CANCELLED)$"
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "727ae761-7e0f-44c9-96b9-23e163fa27f9",
+      "name": "Validate event",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        224,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "fromEmail": "={{$env.LAB_FROM_EMAIL}}",
+        "toEmail": "={{$json.patientEmail}}",
+        "subject": "Actualización de tu cita",
+        "emailFormat": "text",
+        "text": "=La cita {{$json.appointmentId}} cambió a {{$json.status}}.",
+        "options": {}
+      },
+      "id": "c1c4b853-4f9c-4d2c-95ec-03e89bb3d3e3",
+      "name": "Notify patient",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        448,
+        0
+      ],
+      "webhookId": "542b1dc6-967b-49d0-96e7-37eca44b4f35"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\"accepted\":true,\"appointmentId\":$json.appointmentId}",
+        "options": {}
+      },
+      "id": "9ef5ba3d-e7f4-4f7e-b772-4a4662f5e68a",
+      "name": "Deterministic response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        672,
+        80
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Status change webhook": {
+      "main": [
+        [
+          {
+            "node": "Validate event",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validate event": {
+      "main": [
+        [
+          {
+            "node": "Notify patient",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Deterministic response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notify patient": {
+      "main": [
+        [
+          {
+            "node": "Deterministic response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": true
+  },
+  "versionId": "f14920bb-d08d-40c1-a6a1-2983daecbfe6",
+  "meta": {
+    "aiBuilderAssisted": true,
+    "builderVariant": "mcp",
+    "instanceId": "93ff90a0a0d2ecc0c8d5238de259c8e8b17f35a16b40518201218c7d1f0c4c90"
+  },
+  "nodeGroups": [],
+  "id": "Cu7kjdPURjE8LnTp",
+  "tags": []
+}
